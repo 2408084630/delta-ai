@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+src/**/*.pyc
+src/**/__pycache__/
+.pytest_cache/
+dist/
+build/
+*.pyc
+*.pyo
+*.pyd
+*.log
