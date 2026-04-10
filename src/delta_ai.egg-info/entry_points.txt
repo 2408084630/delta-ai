@@ -1,0 +1,3 @@
+[console_scripts]
+delta-ai = delta_ai.main:main
+delta-ai-offline = delta_ai.offline:main

@@ -78,6 +78,20 @@ class DetectionConfig:
     # 需要过滤的类别编号列表。
     # 为空表示不过滤，后续如果你的模型区分敌我或人物类型，可以在这里收敛结果。
     class_ids: tuple[int, ...] = ()
+    # debug detector 生成测试框时使用的标签名。
+    debug_label: str = "debug_target"
+    # debug detector 生成测试框时使用的置信度。
+    debug_confidence: float = 0.95
+    # debug detector 测试框中心点的横向比例位置。
+    # 0.5 表示画面正中央。
+    debug_center_x_ratio: float = 0.5
+    # debug detector 测试框中心点的纵向比例位置。
+    # 0.5 表示画面正中央。
+    debug_center_y_ratio: float = 0.5
+    # debug detector 测试框宽度占当前帧宽度的比例。
+    debug_box_width_ratio: float = 0.2
+    # debug detector 测试框高度占当前帧高度的比例。
+    debug_box_height_ratio: float = 0.35
 
 
 @dataclass(slots=True)

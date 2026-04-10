@@ -18,7 +18,10 @@ class PynputCursorBackend(CursorBackend):
             raise RuntimeError("未安装 pynput，无法启用真实鼠标输出。")
 
         self.config = config
-        self.controller = Controller()
+        try:
+            self.controller = Controller()
+        except Exception as exc:  # pragma: no cover - 依赖系统环境
+            raise RuntimeError(f"创建 pynput Controller 失败：{exc}") from exc
 
     def move(self, command: CursorCommand) -> None:
         """把鼠标移动到屏幕绝对坐标。"""
@@ -28,7 +31,10 @@ class PynputCursorBackend(CursorBackend):
         if self.config.input.clamp_to_screen:
             target_x, target_y = self._clamp_to_monitor(target_x, target_y)
 
-        self.controller.position = (target_x, target_y)
+        try:
+            self.controller.position = (target_x, target_y)
+        except Exception as exc:  # pragma: no cover - 依赖系统环境
+            raise RuntimeError(f"设置鼠标位置失败：{exc}") from exc
 
     def _clamp_to_monitor(self, x: int, y: int) -> tuple[int, int]:
         """把鼠标坐标限制到当前目标屏幕边界内。"""

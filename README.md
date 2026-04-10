@@ -83,7 +83,23 @@ PYTHONPATH=src python3 -m delta_ai
 - `ultralytics` YOLO 检测器适配层
 - 可切换的鼠标输出工厂
 - ROI 坐标到屏幕绝对坐标的映射
+- `debug detector` 固定框联调能力
+- 离线图片检测与标注输出入口
 - ROI 坐标计算与边界保护
 - 每次采集返回屏幕绝对坐标信息，方便后续做鼠标映射
 
 如果没有安装 YOLO 依赖或没有提供模型文件，程序会自动退回 stub 检测器。
+
+## Safe Validation Flow
+
+建议先按下面顺序验证基础功能：
+
+1. 使用 `debug detector` 验证鼠标坐标映射是否正确。
+2. 使用离线图片检测入口验证模型能否识别人。
+3. 检查保存出来的标注图，确认目标中心点是否符合预期。
+
+离线图片检测示例：
+
+```bash
+PYTHONPATH=src python3 -m delta_ai.offline --image /absolute/path/to/test.png --output /absolute/path/to/out.png
+```
